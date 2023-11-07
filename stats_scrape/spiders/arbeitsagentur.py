@@ -18,19 +18,16 @@ load_dotenv()
 class ArbeitsAgenturSpider(scrapy.Spider):
     name = "arbeitsagentur"
     allowed_domains = ["arbeitsagentur.de"]
-    search_word = os.environ["SEARCH_WORD"]
-    start_url = [
-        f"https://www.arbeitsagentur.de/jobsuche/suche?angebotsart=1&was={search_word}"
-    ]
     ADVERTISES_COUNT_ON_PAGE = 25
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.driver = self.create_driver_with_headless()
         self.driver_2 = self.create_driver_with_headless()
+        self.search_word = kwargs.get("word")
 
     def start_requests(self):
-        url = self.start_url[0]
+        url = f"https://www.arbeitsagentur.de/jobsuche/suche?angebotsart=1&was={self.search_word}"
         yield scrapy.Request(url, self.parse)
 
     def parse(self, response, **kwargs):
