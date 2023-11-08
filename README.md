@@ -1,4 +1,4 @@
-## Python Advertising Statistics with www.arbeitsagentur.de
+## Analyzing Advertising Statistics from www.arbeitsagentur.de Using Python
 
 This application was made to scrap data about Python advertisements
 from www.arbeitsagentur.de (German national job agency web resource) and make
